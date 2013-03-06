@@ -19,6 +19,10 @@ $apns	->setBadge(3)
 //set message
 $apns	->setMessage('this is my push message');
 
+//set custom variables
+$apns ->setCustomVariable('notificationId', 1);
+      ->setCustomVariable('referenceId', 382);
+
 //send message
 $apns	->send();
 ?>

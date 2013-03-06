@@ -26,6 +26,8 @@ class SAPN{
 	private $_cert_file = null;
 	//passphrase code
 	private $_passphrase = null;
+	//custom variables
+	private $_custonVariables = array();
 	//badge icon 
 	private $_badge = 0;
 	//sound 
@@ -150,6 +152,15 @@ class SAPN{
 		return $this;
 	}
 
+	public function setCustomVariable($key, $value)
+	{
+		if( !empty($key) && !empty($value)){
+			$this->_custonVariables[$key] = $value;
+		}
+
+		return $this;
+	}
+	
 	public function send()
 	{
 		if( $this->_connect() === false ){
@@ -198,6 +209,13 @@ class SAPN{
 	{
 		$payload = array();
 		$payload['aps'] = array('alert' => $this->_message, 'badge' => intval($this->_badge), 'sound' => $this->_sound);
+
+		if( count( $this->_custonVariables )){
+			foreach( $this->_custonVariables as $key=>$value){
+				$payload['aps'][$key] = $value;
+			}
+		}
+
 		$payload = json_encode($payload);
 		return $payload;
 	}

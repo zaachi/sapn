@@ -18,6 +18,11 @@ HOW TO USE
 
     ``$apns	->addDeviceToken('bf447b59acd20718565b763e2de11382a0db1dc17caec4899fefd9790d0422a4');``
 
+* set custom variables
+
+    ``$apns ->setCustomVariable('referenceId', 382);`` 
+
+
 * set badge
 
     ``$apns->setBadge(3);``
